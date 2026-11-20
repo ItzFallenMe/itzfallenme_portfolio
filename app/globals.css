@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --color-primary: #ea883d; --color-primary-light: #f2a56a; --color-primary-dark: #c76a22;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
+}
+:root { --beams-line-color:#888; --color-bg:#fff; --color-bg-secondary:#f5f5f7; --color-text:#1a1a2e; --color-text-secondary:#4b5563; --color-text-tertiary:#6b7280; --color-border:#e5e7eb; --color-card:#fff; --color-card-hover:#f9f9fb; --color-navbar:#ffffffd9; --color-primary-glow:#ea883d40; }
+.dark { --beams-line-color:#d4d4d4; --color-bg:#000; --color-bg-secondary:#080808; --color-text:#f0f0f0; --color-text-secondary:#a1a1aa; --color-text-tertiary:#71717a; --color-border:#242424; --color-card:#070707; --color-card-hover:#191919; --color-navbar:#0a0a0aeb; --color-primary-glow:#ea883d4d; }
+* { scrollbar-width: thin; scrollbar-color: var(--color-primary) transparent; }
+html, body { overflow-x: clip; }
+body { font-family: var(--font-sans); background: var(--color-bg); color: var(--color-text); transition: background-color .3s, color .3s; }
+::selection { background: var(--color-primary); color: #000; }
+h1,h2,h3,h4 { letter-spacing: -.02em; }
+.floating-nav { box-shadow: 0 4px 24px -4px #0006, 0 2px 8px -2px #0003; }
+@property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@keyframes spin-a { to { --a: 360deg; } }
+.spin-border { position: relative; }
+.spin-border::before { content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px; pointer-events:none;
+  background: conic-gradient(from var(--a), transparent 30%, var(--color-primary) 50%, transparent 70%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); mask-composite: exclude; -webkit-mask-composite: xor; animation: spin-a 4s linear infinite; }
+@keyframes marquee-scroll { to { transform: translateX(-50%); } }
+@keyframes marquee-scroll-rtl { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+.marquee-track { display:flex; width:max-content; animation: marquee-scroll var(--marquee-duration,35s) linear infinite; }
+.marquee-track-reverse { display:flex; width:max-content; animation: marquee-scroll-rtl var(--marquee-duration,35s) linear infinite; }
+@keyframes float-slow { 0%,100%{transform:translate(0) scale(1)} 33%{transform:translate(30px,-20px) scale(1.05)} 66%{transform:translate(-20px,15px) scale(.95)} }
+@keyframes pulse-ring { 0%,100%{opacity:.15;transform:scale(.8)} 50%{opacity:.05;transform:scale(1.2)} }
+@keyframes hero-gradient-shift { 0%,100%{background-position:0%} 50%{background-position:100%} }
+@keyframes timeline-pulse { 0%,100%{box-shadow:0 0 8px 3px #f2a56ab3,0 0 24px 10px #f2a56a66,0 0 80px 24px #f2a56a33} 50%{box-shadow:0 0 5px 2px #f2a56a80,0 0 12px 5px #f2a56a33} }
+@keyframes cta-aurora-drift { 0%,100%{transform:translate(0) scale(1)} 33%{transform:translate(10%,-5%) scale(1.1)} 66%{transform:translate(-5%,8%) scale(.95)} }
+@keyframes cta-shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+.float-slow { animation: float-slow 14s ease-in-out infinite; }
+.hero-name { background: linear-gradient(90deg, var(--color-text), var(--color-primary-light), var(--color-text)); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: hero-gradient-shift 6s ease-in-out infinite; }
+.cta-shimmer { background: linear-gradient(90deg, var(--color-text) 30%, var(--color-primary-light) 50%, var(--color-text) 70%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: cta-shimmer 6s linear infinite; }
+@media (prefers-reduced-motion: reduce) { *,::before,::after { animation: none !important; transition: none !important; } }
+
+@keyframes beam-travel { from { stroke-dashoffset: 6; } to { stroke-dashoffset: -100; } }
+.beam-travel { animation: beam-travel 9s linear infinite; }
+.misc-board-dots { background-color: var(--color-bg-secondary); background-image: radial-gradient(circle, var(--color-border) 1px, transparent 1px); background-size: 24px 24px; }
+.misc-item { transform: rotate(var(--item-rotation,0deg)) scale(var(--item-scale,1)); transition: transform .3s; }
+.misc-item:hover { transform: rotate(var(--item-rotation,0deg)) scale(calc(var(--item-scale,1) * 1.12)); }
+.misc-image-sticker { isolation: isolate; filter: url(#misc-image-sticker-cutline); }
