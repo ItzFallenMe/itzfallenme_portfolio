@@ -10,7 +10,6 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 export const metadata: Metadata = {
   title: "ItzFallenMe | Flutter & Full-Stack Developer",
   description: "Portfolio of ItzFallenMe — Flutter apps, full-stack projects, Discord bots and creative web experiences.",
-  metadataBase: new URL("https://github.com/ItzFallenMe"),
   openGraph: {
     title: "ItzFallenMe | Flutter & Full-Stack Developer",
     description: "Mobile apps, web experiences and software projects built with care.",
