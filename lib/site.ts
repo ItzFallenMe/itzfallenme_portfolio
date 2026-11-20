@@ -38,6 +38,12 @@ export const experience = [
   { when: "Ongoing", role: "Student", org: "Independent Learning", text: "Continuing to develop software engineering fundamentals through study and hands-on projects.", tags: ["Software Development", "Problem Solving"] },
 ];
 export const skills = ["Flutter", "Dart", "TypeScript", "JavaScript", "React", "Next.js", "Node.js", "Python", "Discord.js", "Firebase", "Git", "Figma"];
+export const skillGroups = [
+  { title: "Mobile", items: ["Flutter", "Dart"] },
+  { title: "Web", items: ["TypeScript", "JavaScript", "React", "Next.js"] },
+  { title: "Backend & Bots", items: ["Node.js", "Python", "Discord.js", "Firebase"] },
+  { title: "Tools & Design", items: ["Git", "Figma"] },
+];
 // Add verified milestones here when they are ready to be published.
 export const achievements: { title: string; meta: string; text: string }[] = [];
 export const misc = ["Flutter", "Android", "Anime", "Music", "Code", "Games"];
