@@ -1,6 +1,6 @@
 export const site = {
   name: "ItzFallenMe", handle: "itzfallenme", discordId: "1432008749970620509",
-  github: "ItzFallenMe", githubUrl: "https://github.com/ItzFallenMe", email: "you@example.com",
+  github: "ItzFallenMe", githubUrl: "https://github.com/ItzFallenMe", email: "vedanimefan@gmail.com",
   title: "Developer & Student", tagline: "Building Flutter apps, Discord bots and animated web experiences",
   quote: "Ship it, then make it better.",
   bio: "I’m a developer and student based in India. I build Flutter apps, Discord bots and animated web experiences, and I care about smooth, polished details.",
