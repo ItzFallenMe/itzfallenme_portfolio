@@ -1,30 +1,22 @@
 "use client";
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { useEffect,useState } from "react";
+import { AnimatePresence,motion } from "motion/react";
 import ActionButton from "@/components/ActionButton";
-type Note = { id: number; text: string; rot: number };
-export default function Wall() {
-  const [notes, setNotes] = useState<Note[]>([]);
-  const [text, setText] = useState("");
-  useEffect(() => { try { setNotes(JSON.parse(localStorage.getItem("wall") || "[]")); } catch {} }, []);
-  const add = () => {
-    if (!text.trim()) return;
-    const next = [{ id: Date.now(), text: text.trim().slice(0, 120), rot: Math.round(Math.random() * 10 - 5) }, ...notes];
-    setNotes(next); setText(""); try { localStorage.setItem("wall", JSON.stringify(next)); } catch {}
-  };
-  return (
-    <section className="mx-auto max-w-5xl px-6 pb-28 pt-24">
-      <h1 className="font-serif text-5xl font-black md:text-7xl">The Wall<span className="text-primary">.</span></h1>
-      <p className="mt-3 text-[var(--color-text-secondary)]">Leave a note. This demo stores notes in your browser only; connect a database to share them with every visitor.</p>
-      <div className="mt-8 flex gap-2">
-        <input value={text} onChange={(e) => setText(e.target.value)} onKeyDown={(e) => e.key === "Enter" && add()} maxLength={120} placeholder="Write something…" className="flex-1 rounded-full border border-[var(--color-border)] bg-[var(--color-card)] px-5 py-3 outline-none focus:border-primary" />
-        <ActionButton onClick={add} disabled={!text.trim()}>Pin it</ActionButton>
-      </div>
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-        <AnimatePresence>{notes.map((n) => (
-          <motion.div key={n.id} layout initial={{ scale: 0.6, opacity: 0, y: -30 }} animate={{ scale: 1, opacity: 1, y: 0, rotate: n.rot }} whileHover={{ rotate: 0, scale: 1.04 }} exit={{ scale: 0.6, opacity: 0 }} className="rounded-2xl bg-primary p-5 text-white shadow-xl">{n.text}</motion.div>
-        ))}</AnimatePresence>
-      </div>
-    </section>
-  );
+type Note={id:number;text:string;rot:number;color:string;createdAt:number};
+const colors=[{name:"Orange",className:"bg-[#ea883d] text-white"},{name:"Amber",className:"bg-[#f3c56a] text-[#30200c]"},{name:"Mint",className:"bg-[#9bd7bd] text-[#123326]"},{name:"Sky",className:"bg-[#9cc8ed] text-[#142d44]"},{name:"Lavender",className:"bg-[#c4b6ed] text-[#2a2146]"}];
+const storageKey="portfolio-wall-v2";
+export default function Wall(){
+ const [notes,setNotes]=useState<Note[]>([]);const [text,setText]=useState("");const [color,setColor]=useState(colors[0].name);const [loaded,setLoaded]=useState(false);
+ useEffect(()=>{try{const saved=JSON.parse(localStorage.getItem(storageKey)||"[]");if(Array.isArray(saved))setNotes(saved);}catch{}setLoaded(true);},[]);
+ useEffect(()=>{if(loaded){try{localStorage.setItem(storageKey,JSON.stringify(notes));}catch{}}},[notes,loaded]);
+ const add=()=>{const value=text.trim();if(!value)return;if(notes.length>=50)return;setNotes(n=>[{id:Date.now(),text:value.slice(0,180),rot:Math.round(Math.random()*8-4),color,createdAt:Date.now()},...n]);setText("");};
+ const remove=(id:number)=>setNotes(n=>n.filter(note=>note.id!==id));
+ const clear=()=>{if(notes.length&&window.confirm("Clear all notes saved in this browser?"))setNotes([]);};
+ const selected=colors.find(c=>c.name===color)||colors[0];
+ return <section className="mx-auto max-w-5xl px-6 pb-28 pt-24"><div className="flex flex-wrap items-end justify-between gap-4"><div><p className="text-xs font-semibold uppercase tracking-[.22em] text-primary">Visitor corner</p><h1 className="mt-3 font-serif text-5xl font-black md:text-7xl">The Wall<span className="text-primary">.</span></h1></div><p className="text-sm text-[var(--color-text-tertiary)]">{notes.length}/50 notes · local to this browser</p></div>
+ <p className="mt-4 max-w-2xl leading-7 text-[var(--color-text-secondary)]">Leave a note, a tiny thought, or a message. This is a local demo: notes stay on this device and are not visible to other visitors.</p>
+ <div className="mt-8 rounded-3xl border border-[var(--color-border)] bg-[var(--color-card)] p-5 md:p-7"><label className="block text-sm font-semibold">Your note</label><textarea value={text} onChange={e=>setText(e.target.value)} maxLength={180} placeholder="Write something kind, funny, or interesting…" rows={3} className="mt-3 w-full resize-y rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-4 outline-none transition focus:border-primary"/><div className="mt-3 flex flex-wrap items-center justify-between gap-3"><span className="text-xs text-[var(--color-text-tertiary)]">{text.length}/180</span><div className="flex flex-wrap gap-2">{colors.map(c=><button key={c.name} onClick={()=>setColor(c.name)} aria-label={c.name+" note color"} aria-pressed={color===c.name} className={`h-8 w-8 rounded-full ${c.className} ring-offset-2 ring-offset-[var(--color-card)] ${color===c.name?"ring-2 ring-primary":"opacity-70 hover:opacity-100"}`}/>)}</div><ActionButton onClick={add} disabled={!text.trim()||notes.length>=50}>Pin note</ActionButton></div></div>
+ <div className="mt-8 flex items-center justify-between"><h2 className="font-serif text-2xl font-bold">Pinned notes</h2>{notes.length>0&&<button onClick={clear} className="text-sm text-[var(--color-text-tertiary)] underline underline-offset-4 hover:text-primary">Clear local wall</button>}</div>
+ {notes.length===0?<div className="mt-5 rounded-3xl border border-dashed border-[var(--color-border)] px-6 py-14 text-center"><p className="font-serif text-xl font-bold">The wall is empty.</p><p className="mt-2 text-sm text-[var(--color-text-secondary)]">Be the first to pin a note.</p></div>:<div className="mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3"><AnimatePresence>{notes.map(note=>{const c=colors.find(x=>x.name===note.color)||colors[0];return <motion.article key={note.id} layout initial={{scale:.65,opacity:0,y:-20}} animate={{scale:1,opacity:1,y:0,rotate:note.rot}} exit={{scale:.7,opacity:0}} whileHover={{rotate:0,scale:1.03}} className={`relative flex min-h-44 flex-col justify-between rounded-2xl p-5 shadow-lg ${c.className}`}><p className="whitespace-pre-wrap break-words text-base font-medium leading-7">{note.text}</p><div className="mt-5 flex items-center justify-between gap-3"><time className="text-xs opacity-70">{new Date(note.createdAt).toLocaleDateString()}</time><button onClick={()=>remove(note.id)} aria-label="Remove note" className="rounded-full px-2 py-1 text-xs opacity-70 transition hover:bg-black/10 hover:opacity-100">Remove ×</button></div></motion.article>;})}</AnimatePresence></div>}
+ <p className="mt-8 text-xs leading-6 text-[var(--color-text-tertiary)]">Notes can be removed by their author only while using this browser. Storage may be cleared by browser settings. No account or server is involved.</p></section>;
 }
