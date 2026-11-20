@@ -6,6 +6,7 @@ import DiscordCard from "@/components/DiscordCard";
 import GithubStats from "@/components/GithubStats";
 import ProjectsScroller from "@/components/ProjectsScroller";
 import MiscBoard from "@/components/MiscBoard";
+import LocalClock from "@/components/LocalClock";
 import { site, experience, skills, achievements, stats } from "@/lib/site";
 
 const sec = "mx-auto max-w-6xl px-6 py-20 md:py-28";
@@ -29,6 +30,7 @@ export default function Home() {
             </div>
             <h3 className="mt-6 font-serif text-3xl font-black">{site.name}</h3>
             <p className="mt-1 text-sm text-primary">{site.title}</p>
+            <p className="mt-2 text-xs text-[var(--color-text-tertiary)]">Student · Independent developer</p>
             <p className="mt-5 max-w-prose text-sm leading-7 text-[var(--color-text-secondary)] md:text-base">{site.bio}</p>
             <a href={site.githubUrl} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-text)] transition hover:text-primary">
               Explore my GitHub <span aria-hidden>↗</span>
@@ -39,6 +41,7 @@ export default function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-text-tertiary)]">Based in</p>
             <p className="mt-3 font-serif text-2xl font-bold">India</p>
             <p className="mt-2 text-sm leading-6 text-[var(--color-text-secondary)]">Available for remote collaboration.</p>
+            <div className="mt-5 border-t border-[var(--color-border)] pt-4"><LocalClock /></div>
           </Reveal>
           <Reveal delay={0.2} className={`${card} flex flex-col justify-between md:col-span-2`}>
             <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-text-secondary)]">
@@ -87,6 +90,7 @@ export default function Home() {
         <Reveal>
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">Tools of the trade</p>
           <h2 className={h2}>Skills<span className="text-primary">.</span></h2>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--color-text-secondary)]">A snapshot of the tools and technologies I currently work with. The list evolves as I build and learn.</p>
         </Reveal>
         <div className="mt-10 flex flex-wrap gap-3">
           {skills.map((s, i) => (
