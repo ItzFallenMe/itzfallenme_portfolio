@@ -31,7 +31,9 @@ export default function ActionButton({
 }: Props) {
   const classes = `${styles[variant]} ${className}`.trim();
   if (href) {
-    if (external) return <a href={href} className={classes} target="_blank" rel="noreferrer">{children}</a>;
+    if (external || href.startsWith("mailto:") || href.startsWith("tel:")) {
+      return <a href={href} className={classes} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined}>{children}</a>;
+    }
     return <Link href={href} className={classes}>{children}</Link>;
   }
   return <button type={type} onClick={onClick} disabled={disabled} className={classes}>{children}</button>;
