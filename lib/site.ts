@@ -26,18 +26,19 @@ export const stats = [
   { n: 12, l: "Technical Skills" },
 ];
 export const projects = [
-  { title: "AniFox", kind: "Mobile App", desc: "A rebrand of an anime streaming client with a new identity, a theme drawn from the logo, an animated splash and extra features.", tags: ["Flutter", "Dart", "Branding"] },
-  { title: "Zuno", kind: "Web App", desc: "A music web app with an Android wrapper, rebuilt from an open-source player under a new brand.", tags: ["Web", "Android", "Music"] },
-  { title: "Aether", kind: "Mobile App", desc: "A social messenger app built with Flutter.", tags: ["Flutter", "Dart", "Social"] },
-  { title: "Discord Dating Bot", kind: "Discord Bot", desc: "A production matchmaking bot for Discord communities.", tags: ["Discord", "Bot", "Backend"] },
-  { title: "Discord Economy Bot", kind: "Discord Bot", desc: "An autonomous multi-session economy bot with currencies, shops and games.", tags: ["Discord", "Bot", "Economy"] },
-  { title: "Lovemate", kind: "Web App", desc: "An extension of lovemate.info with live Discord integrations.", tags: ["Web", "Discord", "Realtime"] },
+  { slug: "anifox", title: "AniFox", kind: "Mobile App", desc: "A Flutter-powered anime streaming app with downloads, AniList tracking, a customizable interface, and desktop support.", tags: ["Flutter", "Dart", "Android", "Desktop"], details: ["Streaming and downloads", "AniList tracking", "Customizable interface", "Multi-platform builds"], featured: true },
+  { slug: "zuno", title: "Zuno", kind: "Web App", desc: "A music project. More project details are being documented.", tags: ["Web", "Music"], details: [], featured: true },
+  { slug: "aether", title: "Aether", kind: "Mobile App", desc: "A mobile application project. Details are being documented.", tags: ["Flutter", "Mobile"], details: [], featured: true },
+  { slug: "discord-dating-bot", title: "Discord Dating Bot", kind: "Discord Bot", desc: "A Discord bot project focused on matchmaking and community interaction.", tags: ["Discord", "Bot", "Backend"], details: [], featured: true },
+  { slug: "discord-economy-bot", title: "Discord Economy Bot", kind: "Discord Bot", desc: "A Discord economy bot project with currencies, shop, and game systems.", tags: ["Discord", "Bot", "Economy"], details: [], featured: false },
+  { slug: "lovemate", title: "Lovemate", kind: "Web App", desc: "A web project with Discord integrations.", tags: ["Web", "Discord"], details: [], featured: false },
+  { slug: "realm-x-discord-theme", title: "RealmX Discord Theme", kind: "Theme", desc: "A customizable Vencord theme.", tags: ["CSS", "Discord", "Theme"], details: [], featured: false },
+  { slug: "astrachess", title: "AstraChess", kind: "Web App", desc: "An online chess web application.", tags: ["Web", "Chess"], details: [], featured: false },
 ];
 export const experience = [
   { when: "2025 – Present", role: "Independent Developer", org: "Self-employed", text: "Building and shipping Flutter apps, Discord bots and web projects from concept through implementation.", tags: ["Flutter", "Node.js", "Discord"] },
   { when: "Ongoing", role: "Student", org: "Independent Learning", text: "Continuing to develop software engineering fundamentals through study and hands-on projects.", tags: ["Software Development", "Problem Solving"] },
 ];
 export const skills = ["Flutter", "Dart", "TypeScript", "JavaScript", "React", "Next.js", "Node.js", "Python", "Discord.js", "Firebase", "Git", "Figma"];
-// Add verified milestones here when they are ready to be published.
 export const achievements: { title: string; meta: string; text: string }[] = [];
 export const misc = ["Flutter", "Android", "Anime", "Music", "Code", "Games"];
