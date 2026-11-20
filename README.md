@@ -17,7 +17,7 @@ npm run build
 - Edit portfolio content in `lib/site.ts` (bio, projects, experience, skills, achievements).
 - Blog posts are in `lib/blog.ts`.
 - Project detail routes are generated from the project list.
-- The Wall is a browser-local demo; notes are not shared with other visitors.
+- The Wall uses browser-local storage by default; an optional Supabase setup enables a shared public wall.
 
 ## Contact form
 By default, the contact form opens the visitor's email application with the message prefilled. To enable a hosted form endpoint, add `NEXT_PUBLIC_FORMSPREE_ENDPOINT` to the build environment (for example, a Formspree endpoint). The form will then submit to that endpoint and show status feedback. Configure the endpoint with the provider before deploying.
