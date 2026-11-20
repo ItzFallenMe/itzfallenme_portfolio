@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 export default function Contact() {
   const [f, setF] = useState({ name: "", message: "" });
   const field = "w-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-card)] px-5 py-3 outline-none focus:border-primary";
-  const mail = `mailto:${site.email}?subject=${encodeURIComponent("Hello from " + f.name)}&body=${encodeURIComponent(f.message)`;
+  const mail = `mailto:${site.email}?subject=${encodeURIComponent("Hello from " + f.name)}&body=${encodeURIComponent(f.message)}`;
   return (
     <section className="mx-auto max-w-2xl px-6 pb-28 pt-24">
       <Reveal>
