@@ -1,26 +1,8 @@
+"use client";
+import { useMemo,useState } from "react";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import ActionButton from "@/components/ActionButton";
-export default function Blog() {
-  return (
-    <section className="mx-auto max-w-4xl px-6 pb-28 pt-24">
-      <Reveal>
-        <SectionHeading eyebrow="Thoughts & ideas" title="Blog">
-          Notes from building, learning, experimenting, and shipping software.
-        </SectionHeading>
-        <div className="spin-border relative mt-12 overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-card)] p-8 md:p-12">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,var(--color-primary-glow),transparent_55%)] opacity-50" />
-          <div className="relative">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Coming soon</p>
-            <h2 className="mt-4 font-serif text-3xl font-black md:text-4xl">The first post is still cooking.</h2>
-            <p className="mt-4 max-w-xl leading-7 text-[var(--color-text-secondary)]">When there’s something worth writing, it’ll land here. Until then, take a look at the projects or say hello.</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ActionButton href="/projects">Browse projects</ActionButton>
-              <ActionButton href="/contact" variant="outline">Get in touch</ActionButton>
-            </div>
-          </div>
-        </div>
-      </Reveal>
-    </section>
-  );
-}
+const ideas=[{title:"Building Flutter apps that feel polished",tag:"Flutter",description:"Notes on details, navigation, motion, and the small decisions that make an app feel cohesive."},{title:"What I learned shipping projects independently",tag:"Building",description:"A practical look at moving from an idea to a working product, and the trade-offs along the way."},{title:"Making Discord bots more than command collections",tag:"Backend",description:"Thinking about structure, state, reliability, and user experience in bot projects."}];
+const tags=["All",...ideas.map(p=>p.tag)];
+export default function Blog(){const [tag,setTag]=useState("All");const filtered=useMemo(()=>ideas.filter(p=>tag==="All"||p.tag===tag),[tag]);return <section className="mx-auto max-w-4xl px-6 pb-28 pt-24"><Reveal><SectionHeading eyebrow="Thoughts & ideas" title="Blog">Notes from building, learning, experimenting, and shipping software.</SectionHeading></Reveal><div className="mt-10 flex flex-wrap gap-2">{tags.map(t=><button key={t} onClick={()=>setTag(t)} aria-pressed={tag===t} className={`rounded-full border px-4 py-2 text-xs font-semibold transition ${tag===t?"border-primary bg-primary text-white":"border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-primary/50"}`}>{t}</button>)}</div><p className="mt-5 text-xs text-[var(--color-text-tertiary)]">{filtered.length} ideas · planned topics, not published articles</p><div className="mt-5 space-y-4">{filtered.map((p,i)=><Reveal key={p.title} delay={i*.06}><article className="rounded-3xl border border-[var(--color-border)] bg-[var(--color-card)] p-6 md:p-8"><div className="flex items-center justify-between gap-4"><span className="text-xs font-semibold uppercase tracking-[.18em] text-primary">{p.tag}</span><span className="text-xs text-[var(--color-text-tertiary)]">Planned</span></div><h2 className="mt-4 font-serif text-2xl font-bold md:text-3xl">{p.title}</h2><p className="mt-3 leading-7 text-[var(--color-text-secondary)]">{p.description}</p></article></Reveal>)}</div><div className="mt-12 rounded-3xl border border-[var(--color-border)] bg-[var(--color-card)] p-8"><h2 className="font-serif text-2xl font-black">Until the writing starts…</h2><p className="mt-3 text-[var(--color-text-secondary)]">Explore the projects or send a message.</p><div className="mt-6 flex flex-wrap gap-3"><ActionButton href="/projects">Browse projects</ActionButton><ActionButton href="/contact" variant="outline">Get in touch</ActionButton></div></div></section>}
