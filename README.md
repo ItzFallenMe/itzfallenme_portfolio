@@ -1,6 +1,8 @@
 # ItzFallenMe portfolio (Next.js + TSX)
 
 ## Local development
+Copy `.env.example` to `.env.local` and fill in optional service settings when you configure them.
+
 ```bash
 npm install
 npm run dev
