@@ -1,1 +1,2 @@
-export default function Home(){return <section className="mx-auto max-w-6xl px-6 py-28"><h1 className="font-serif text-6xl font-black">Homepage debug</h1></section>;}
+import Hero from "@/components/Hero";
+export default function Home(){return <Hero/>;}
