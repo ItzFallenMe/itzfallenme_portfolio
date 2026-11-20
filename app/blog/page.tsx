@@ -1,26 +1,8 @@
+"use client";
+import {useMemo,useState} from "react";
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import ActionButton from "@/components/ActionButton";
-export default function Blog() {
-  return (
-    <section className="mx-auto max-w-4xl px-6 pb-28 pt-24">
-      <Reveal>
-        <SectionHeading eyebrow="Thoughts & ideas" title="Blog">
-          Notes from building, learning, experimenting, and shipping software.
-        </SectionHeading>
-        <div className="spin-border relative mt-12 overflow-hidden rounded-3xl border border-[var(--color-border)] bg-[var(--color-card)] p-8 md:p-12">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,var(--color-primary-glow),transparent_55%)] opacity-50" />
-          <div className="relative">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">Coming soon</p>
-            <h2 className="mt-4 font-serif text-3xl font-black md:text-4xl">The first post is still cooking.</h2>
-            <p className="mt-4 max-w-xl leading-7 text-[var(--color-text-secondary)]">When there’s something worth writing, it’ll land here. Until then, take a look at the projects or say hello.</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <ActionButton href="/projects">Browse projects</ActionButton>
-              <ActionButton href="/contact" variant="outline">Get in touch</ActionButton>
-            </div>
-          </div>
-        </div>
-      </Reveal>
-    </section>
-  );
-}
+import {posts} from "@/lib/blog";
+const tags=["All",...Array.from(new Set(posts.flatMap(p=>p.tags)))];
+export default function Blog(){const [tag,setTag]=useState("All");const [query,setQuery]=useState("");const filtered=useMemo(()=>posts.filter(p=>(tag==="All"||p.tags.includes(tag))&&[p.title,p.excerpt,...p.tags].join(" ").toLowerCase().includes(query.trim().toLowerCase())),[tag,query]);return <section className="mx-auto max-w-4xl px-6 pb-28 pt-24"><Reveal><SectionHeading eyebrow="Thoughts & ideas" title="Blog">Technical notes about building, shipping, and maintaining projects.</SectionHeading></Reveal><div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search articles…" className="w-full rounded-full border border-[var(--color-border)] bg-[var(--color-card)] px-5 py-3 text-sm outline-none focus:border-primary sm:max-w-sm"/><Link href="/blog/feed.xml" className="text-sm text-primary hover:underline">RSS feed ↗</Link></div><div className="mt-4 flex flex-wrap gap-2">{tags.map(t=><button key={t} onClick={()=>setTag(t)} aria-pressed={tag===t} className={`rounded-full border px-4 py-2 text-xs font-semibold transition ${tag===t?"border-primary bg-primary text-white":"border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-primary/50"}`}>{t}</button>)}</div><p className="mt-5 text-xs text-[var(--color-text-tertiary)]">{filtered.length} articles</p><div className="mt-5 space-y-4">{filtered.map((p,i)=><Reveal key={p.slug} delay={i*.05}><article className="group rounded-3xl border border-[var(--color-border)] bg-[var(--color-card)] p-6 transition hover:border-primary/40 md:p-8"><div className="flex flex-wrap items-center gap-3 text-xs text-[var(--color-text-tertiary)]"><time dateTime={p.date}>{p.date}</time><span>·</span><span>{p.readingTime} read</span></div><h2 className="mt-4 font-serif text-2xl font-bold transition group-hover:text-primary md:text-3xl"><Link href={`/blog/${p.slug}`}>{p.title}</Link></h2><p className="mt-3 leading-7 text-[var(--color-text-secondary)]">{p.excerpt}</p><div className="mt-5 flex flex-wrap gap-2">{p.tags.map(t=><span key={t} className="rounded-full border border-[var(--color-border)] px-3 py-1.5 text-xs text-[var(--color-text-secondary)]">{t}</span>)}</div><Link href={`/blog/${p.slug}`} className="mt-6 inline-flex text-sm font-semibold text-primary">Read article →</Link></article></Reveal>)}</div>{!filtered.length&&<div className="mt-8 rounded-3xl border border-dashed border-[var(--color-border)] p-10 text-center"><p className="font-serif text-xl font-bold">No articles found</p><button onClick={()=>{setQuery("");setTag("All");}} className="mt-4 text-sm text-primary underline">Clear filters</button></div>}</section>;}
