@@ -20,10 +20,10 @@ export const nav = [
   { href: "/contact", label: "Contact" },
 ];
 export const stats = [
-  { n: 6, l: "Projects" },
-  { n: 2, l: "Years of Experience" },
-  { n: 3, l: "Platforms" },
-  { n: 12, l: "Technical Skills" },
+  { n: 8, l: "Portfolio Projects" },
+  { n: 4, l: "Project Categories" },
+  { n: 12, l: "Technologies" },
+  { n: 4, l: "AniFox Platforms" },
 ];
 export const projects = [
   { slug: "anifox", title: "AniFox", kind: "Mobile App", desc: "A Flutter-powered anime streaming app with downloads, AniList tracking, a customizable interface, and desktop support.", tags: ["Flutter", "Dart", "Android", "Desktop"], details: ["Streaming and downloads", "AniList tracking", "Customizable interface", "Multi-platform builds"], featured: true },
