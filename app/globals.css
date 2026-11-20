@@ -78,3 +78,30 @@ h1,h2,h3,h4 { letter-spacing: -.02em; }
 .misc-item { transform: rotate(var(--item-rotation,0deg)) scale(var(--item-scale,1)); transition: transform .3s; }
 .misc-item:hover { transform: rotate(var(--item-rotation,0deg)) scale(calc(var(--item-scale,1) * 1.12)); }
 .misc-image-sticker { isolation: isolate; filter: url(#misc-image-sticker-cutline); }
+
+/* Shared interaction components adapted from the supplied reference capture. */
+.reference-button {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  gap: .65rem; overflow: hidden; border-radius: 9999px; padding: .8rem 1.8rem;
+  font-size: .875rem; font-weight: 650; transition: transform .3s, border-color .3s, background .3s, color .3s, box-shadow .3s;
+}
+.reference-button:hover { transform: translateY(-2px); }
+.reference-button:focus-visible { outline: 2px solid var(--color-primary-light); outline-offset: 3px; }
+.reference-button:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.reference-button-primary { color: #fff; background: var(--color-primary); box-shadow: 0 0 32px var(--color-primary-glow); }
+.reference-button-primary:hover { background: var(--color-primary-dark); }
+.reference-button-primary::after, .reference-button-outline::after {
+  content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.08) 45%,rgba(255,255,255,.18) 50%,rgba(255,255,255,.08) 55%,transparent 60%);
+  background-size:200% 100%; opacity:0; transition:opacity .3s;
+}
+.reference-button-primary:hover::after, .reference-button-outline:hover::after { opacity:1; animation:button-shimmer 1.1s ease; }
+@keyframes button-shimmer { to { background-position:-200% 0; } 
+}
+.reference-button-outline { border:1px solid var(--color-border); background:var(--color-card); color:var(--color-text); }
+.reference-button-outline:hover { border-color:color-mix(in srgb, var(--color-primary) 45%, var(--color-border)); box-shadow:0 0 48px -12px var(--color-primary-glow); }
+.reference-button-quiet { color:var(--color-text-secondary); border:1px solid transparent; padding:.65rem 1rem; }
+.reference-button-quiet:hover { color:var(--color-primary); background:var(--color-primary-glow); }
+.section-heading { margin-bottom:2.5rem; }
+.section-eyebrow { margin-bottom:.9rem; font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.28em; color:var(--color-primary); }
+.section-heading-title { font-family:var(--font-serif); font-size:clamp(2.25rem,5vw,3.75rem); font-weight:900; line-height:1.05; letter-spacing:-.035em; }
+.section-heading-description { margin-top:1.1rem; max-width:42rem; color:var(--color-text-secondary); font-size:.95rem; line-height:1.8; }

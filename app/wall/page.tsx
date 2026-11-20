@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import ActionButton from "@/components/ActionButton";
 type Note = { id: number; text: string; rot: number };
 export default function Wall() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -13,15 +14,15 @@ export default function Wall() {
   };
   return (
     <section className="mx-auto max-w-5xl px-6 pb-28 pt-24">
-      <h1 className="font-serif text-5xl font-black md:text-7xl">The Wall</h1>
+      <h1 className="font-serif text-5xl font-black md:text-7xl">The Wall<span className="text-primary">.</span></h1>
       <p className="mt-3 text-[var(--color-text-secondary)]">Leave a note. This demo stores notes in your browser only; connect a database to share them with every visitor.</p>
       <div className="mt-8 flex gap-2">
         <input value={text} onChange={(e) => setText(e.target.value)} onKeyDown={(e) => e.key === "Enter" && add()} maxLength={120} placeholder="Write something…" className="flex-1 rounded-full border border-[var(--color-border)] bg-[var(--color-card)] px-5 py-3 outline-none focus:border-primary" />
-        <button onClick={add} className="rounded-full bg-primary px-6 py-3 font-medium text-black">Pin it</button>
+        <ActionButton onClick={add} disabled={!text.trim()}>Pin it</ActionButton>
       </div>
       <div className="mt-10 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
         <AnimatePresence>{notes.map((n) => (
-          <motion.div key={n.id} layout initial={{ scale: 0.6, opacity: 0, y: -30 }} animate={{ scale: 1, opacity: 1, y: 0, rotate: n.rot }} whileHover={{ rotate: 0, scale: 1.04 }} exit={{ scale: 0.6, opacity: 0 }} className="rounded-2xl bg-primary p-5 text-black shadow-xl">{n.text}</motion.div>
+          <motion.div key={n.id} layout initial={{ scale: 0.6, opacity: 0, y: -30 }} animate={{ scale: 1, opacity: 1, y: 0, rotate: n.rot }} whileHover={{ rotate: 0, scale: 1.04 }} exit={{ scale: 0.6, opacity: 0 }} className="rounded-2xl bg-primary p-5 text-white shadow-xl">{n.text}</motion.div>
         ))}</AnimatePresence>
       </div>
     </section>
