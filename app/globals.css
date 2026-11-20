@@ -1,9 +1,9 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 @theme {
-  --color-primary: #d4547e;
-  --color-primary-light: #e07a9c;
-  --color-primary-dark: #a83d62;
+  --color-primary: #ea883d;
+  --color-primary-light: #f2a568;
+  --color-primary-dark: #c66b25;
   --font-sans: var(--font-inter), system-ui, sans-serif;
   --font-serif: var(--font-playfair), Georgia, serif;
 }
@@ -19,7 +19,7 @@
   --color-card:#fff;
   --color-card-hover:#f9f9fb;
   --color-navbar:#ffffffd9;
-  --color-primary-glow:#d4547e40;
+  --color-primary-glow:#ea883d40;
 }
 .dark {
   --beams-line-color:#d4d4d4;
@@ -33,7 +33,7 @@
   --color-card:#070707;
   --color-card-hover:#191919;
   --color-navbar:#0a0a0aeb;
-  --color-primary-glow:#d4547e4d;
+  --color-primary-glow:#ea883d4d;
 }
 * { scrollbar-width: thin; scrollbar-color: var(--color-primary) transparent; }
 html, body { overflow-x: clip; }
@@ -57,7 +57,7 @@ h1,h2,h3,h4 { letter-spacing: -.02em; }
 @keyframes float-slow { 0%,100%{transform:translate(0) scale(1)} 33%{transform:translate(30px,-20px) scale(1.05)} 66%{transform:translate(-20px,15px) scale(.95)} }
 @keyframes pulse-ring { 0%,100%{opacity:.15;transform:scale(.8)} 50%{opacity:.05;transform:scale(1.2)} }
 @keyframes hero-gradient-shift { 0%,100%{background-position:0%} 50%{background-position:100%} }
-@keyframes timeline-pulse { 0%,100%{box-shadow:0 0 8px 3px #e07a9cb3,0 0 24px 10px #e07a9c66,0 0 80px 24px #e07a9c33} 50%{box-shadow:0 0 5px 2px #e07a9c80,0 0 12px 5px #e07a9c33} }
+@keyframes timeline-pulse { 0%,100%{box-shadow:0 0 8px 3px #f2a568b3,0 0 24px 10px #f2a56866,0 0 80px 24px #f2a56833} 50%{box-shadow:0 0 5px 2px #f2a56880,0 0 12px 5px #f2a56833} }
 @keyframes cta-aurora-drift { 0%,100%{transform:translate(0) scale(1)} 33%{transform:translate(10%,-5%) scale(1.1)} 66%{transform:translate(-5%,8%) scale(.95)} }
 @keyframes cta-shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 .float-slow { animation: float-slow 14s ease-in-out infinite; }
