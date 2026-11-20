@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { site } from "@/lib/site";
+import SectionHeading from "./SectionHeading";
 type Item = { id: string; left: number; top: number; rot: number; scale?: number; z?: number; img?: string; alt?: string; kind?: "quote" | "letter" };
 const items: Item[] = [
   { id: "quote", kind: "quote", left: 25, top: 48, rot: -2, z: 0 },
@@ -48,7 +49,7 @@ export default function MiscBoard() {
   const board = useRef<HTMLDivElement>(null);
   return (
     <section id="misc" className="py-20 md:py-28">
-      <div className="mx-auto mb-16 max-w-6xl px-6"><h2 className="text-3xl font-bold md:text-4xl">Misc</h2><div className="mt-4 h-1 w-16 rounded-full bg-primary" /></div>
+      <div className="mx-auto mb-16 max-w-6xl px-6"><SectionHeading title="Misc" /></div>
       <div className="mx-auto max-w-6xl px-6">
         <div className="misc-board-dots relative overflow-hidden rounded-2xl border border-[var(--color-border)]">
           <div ref={board} className="relative h-[550px] w-full sm:h-[650px] lg:h-[700px]">

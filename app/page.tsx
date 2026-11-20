@@ -6,6 +6,7 @@ import DiscordCard from "@/components/DiscordCard";
 import GithubStats from "@/components/GithubStats";
 import ProjectsScroller from "@/components/ProjectsScroller";
 import MiscBoard from "@/components/MiscBoard";
+import SectionHeading from "@/components/SectionHeading";
 import { site, experience, skills, achievements, stats } from "@/lib/site";
 
 const sec = "mx-auto max-w-6xl px-6 py-20 md:py-28";
@@ -18,10 +19,7 @@ export default function Home() {
       <Hero />
 
       <section className={sec}>
-        <Reveal>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">A little introduction</p>
-          <h2 className={h2}>About Me<span className="text-primary">.</span></h2>
-        </Reveal>
+        <Reveal><SectionHeading eyebrow="A little introduction" title="About Me" /></Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           <Reveal className={`${card} md:col-span-2`}>
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-xl font-black text-white">
@@ -63,10 +61,7 @@ export default function Home() {
       </section>
 
       <section className={sec}>
-        <Reveal>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">The journey so far</p>
-          <h2 className={h2}>Experience<span className="text-primary">.</span></h2>
-        </Reveal>
+        <Reveal><SectionHeading eyebrow="The journey so far" title="Experience" /></Reveal>
         <div className="relative ml-3 mt-12 border-l border-[var(--color-border)] pl-8 md:pl-10">
           {experience.map((e, i) => (
             <Reveal key={e.role} delay={i * 0.08} className="relative pb-12 last:pb-0">
@@ -84,10 +79,7 @@ export default function Home() {
       </section>
 
       <section className={sec}>
-        <Reveal>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">Tools of the trade</p>
-          <h2 className={h2}>Skills<span className="text-primary">.</span></h2>
-        </Reveal>
+        <Reveal><SectionHeading eyebrow="Tools of the trade" title="Skills" /></Reveal>
         <div className="mt-10 flex flex-wrap gap-3">
           {skills.map((s, i) => (
             <Reveal key={s} delay={i * 0.025}>
@@ -106,10 +98,7 @@ export default function Home() {
 
       {achievements.length > 0 && (
         <section className={sec}>
-          <Reveal>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">Milestones</p>
-            <h2 className={h2}>Achievements<span className="text-primary">.</span></h2>
-          </Reveal>
+          <Reveal><SectionHeading eyebrow="Milestones" title="Achievements" /></Reveal>
           <div className="mt-10 grid gap-4 md:grid-cols-2">
             {achievements.map((a) => (
               <Reveal key={a.title} className={card}>
@@ -124,8 +113,7 @@ export default function Home() {
 
       <section className={sec}>
         <Reveal>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.28em] text-primary">Open-source activity</p>
-          <h2 className={`${h2} mb-10`}>Code & Contributions<span className="text-primary">.</span></h2>
+          <SectionHeading eyebrow="Open-source activity" title="Code & Contributions" className="mb-10" />
           <GithubStats />
         </Reveal>
       </section>
