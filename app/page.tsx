@@ -7,7 +7,7 @@ import GithubStats from "@/components/GithubStats";
 import ProjectsScroller from "@/components/ProjectsScroller";
 import MiscBoard from "@/components/MiscBoard";
 import LocalClock from "@/components/LocalClock";
-import { site, experience, skills, achievements, stats } from "@/lib/site";
+import { site, experience, skills, skillGroups, achievements, stats } from "@/lib/site";
 
 const sec = "mx-auto max-w-6xl px-6 py-20 md:py-28";
 const h2 = "font-serif text-4xl font-black tracking-tight md:text-6xl";
@@ -92,10 +92,15 @@ export default function Home() {
           <h2 className={h2}>Skills<span className="text-primary">.</span></h2>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--color-text-secondary)]">A snapshot of the tools and technologies I currently work with. The list evolves as I build and learn.</p>
         </Reveal>
-        <div className="mt-10 flex flex-wrap gap-3">
-          {skills.map((s, i) => (
-            <Reveal key={s} delay={i * 0.025}>
-              <span className="inline-block rounded-full border border-[var(--color-border)] bg-[var(--color-card)] px-5 py-2.5 text-sm text-[var(--color-text-secondary)] transition duration-300 hover:-translate-y-0.5 hover:border-primary hover:text-primary">{s}</span>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          {skillGroups.map((group, gi) => (
+            <Reveal key={group.title} delay={gi * 0.06} className={`${card} !p-6`}>
+              <h3 className="text-xs font-semibold uppercase tracking-[.18em] text-primary">{group.title}</h3>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {group.items.map((skill) => (
+                  <span key={skill} className="rounded-full border border-[var(--color-border)] bg-[var(--color-bg-secondary)] px-3 py-2 text-sm text-[var(--color-text-secondary)] transition hover:border-primary hover:text-primary">{skill}</span>
+                ))}
+              </div>
             </Reveal>
           ))}
         </div>
