@@ -1,1 +1,2 @@
-export default function Hero(){return <section><h1>Hero test</h1></section>;}
+import HeroBeams from "./HeroBeams";
+export default function Hero(){return <section className="relative min-h-screen"><HeroBeams/></section>;}
