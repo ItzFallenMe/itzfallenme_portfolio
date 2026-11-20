@@ -1,3 +1,4 @@
 import {posts} from "@/lib/blog";
+export const dynamic = "force-static";
 export async function GET(){const base=process.env.NEXT_PUBLIC_SITE_URL || "";const xml=`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>ItzFallenMe Blog</title><link>${base ? base+"/blog" : ""}</link><description>Technical notes about building and shipping projects.</description>${posts.map(p=>`<item><title>${escapeXml(p.title)}</title><link>${base ? base+"/blog/"+p.slug : ""}</link><guid>${base ? base+"/blog/"+p.slug : p.slug}</guid><pubDate>${new Date(p.date+"T00:00:00Z").toUTCString()}</pubDate><description>${escapeXml(p.excerpt)}</description></item>`).join("")}</channel></rss>`;return new Response(xml,{headers:{"Content-Type":"application/rss+xml; charset=utf-8"}});}
 function escapeXml(value:string){return value.replace(/[<>&'"]/g,c=>({"<":"&lt;",">":"&gt;","&":"&amp;","'":"&apos;",'"':"&quot;"}[c]||c));}
