@@ -13,10 +13,10 @@ export default function HeroBeams() {
             <stop offset="0.43594" stopColor="var(--beams-line-color, #888)" stopOpacity="0" />
           </radialGradient>
           <linearGradient id="beam-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#18CCFC" stopOpacity="0" />
-            <stop offset="20%" stopColor="#18CCFC" />
-            <stop offset="60%" stopColor="#6344F5" />
-            <stop offset="100%" stopColor="#AE48FF" stopOpacity="0" />
+            <stop offset="0%" stopColor="#ea883d" stopOpacity="0" />
+            <stop offset="20%" stopColor="#ea883d" />
+            <stop offset="60%" stopColor="#f2a568" />
+            <stop offset="100%" stopColor="#c66b25" stopOpacity="0" />
           </linearGradient>
         </defs>
       </svg>
