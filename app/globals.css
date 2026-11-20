@@ -71,7 +71,7 @@ h1,h2,h3,h4 { letter-spacing: -.02em; }
   background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
   animation: cta-shimmer 6s linear infinite;
 }
-@media (prefers-reduced-motion: reduce) { *,::before,::after { animation: none !important; transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { *,::before,::after { animation: none !important; transition: none !important; } .hero-enter,.hero-letter { opacity: 1 !important; transform: none !important; } }
 @keyframes beam-travel { from { stroke-dashoffset: 6; } to { stroke-dashoffset: -100; } }
 .beam-travel { animation: beam-travel 9s linear infinite; }
 .misc-board-dots { background-color: var(--color-bg-secondary); background-image: radial-gradient(circle, var(--color-border) 1px, transparent 1px); background-size: 24px 24px; }
