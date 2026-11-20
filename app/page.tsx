@@ -7,7 +7,7 @@ import GithubStats from "@/components/GithubStats";
 import ProjectsScroller from "@/components/ProjectsScroller";
 import MiscBoard from "@/components/MiscBoard";
 import LocalClock from "@/components/LocalClock";
-import { site, experience, skills, skillGroups, achievements, stats } from "@/lib/site";
+import { site, experience, skillGroups, achievements, stats } from "@/lib/site";
 
 const sec = "mx-auto max-w-6xl px-6 py-20 md:py-28";
 const h2 = "font-serif text-4xl font-black tracking-tight md:text-6xl";
